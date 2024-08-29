@@ -1,0 +1,25 @@
+@font-face {
+  font-family: 'FarAwayGalaxy';
+  src: url("https://db.onlinewebfonts.com/t/3e003affc14b0dbc145b9b076396a441.woff")format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+h1 {
+  text-transform: uppercase;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+h2 {
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  text-transform: uppercase;
+}
+
+.pa-4 {
+  padding: 16px;
+}
