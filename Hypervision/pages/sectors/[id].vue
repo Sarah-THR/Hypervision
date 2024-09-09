@@ -72,13 +72,28 @@
                         color="primary"
                         :label="item.name"
                         :value="item.name"
-                        :v-model="true"
+                        v-model="selectedAccessItems[access.name]"
                       ></v-checkbox>
                     </v-col>
                   </v-row>
                 </div>
                 <div class="mt-6">
                   <h4>{{ access.name }} non sélectionnées</h4>
+                  <v-row>
+                    <v-col
+                      cols="12"
+                      md="4"
+                      sm="4"
+                      v-for="agency in agencies"
+                      :key="agency.name"
+                    >
+                      <v-checkbox
+                        color="primary"
+                        :label="agency.name"
+                        :value="agency.name"
+                      ></v-checkbox>
+                    </v-col>
+                  </v-row>
                 </div>
               </v-expansion-panel-text>
             </v-expansion-panel>
@@ -96,6 +111,15 @@ export default {
       searchQuery: "",
       activeTab: 0,
       tabOptions: [{ text: "Paramètres" }, { text: "Accès" }],
+      selectedAccessItems: {
+        Agences: ["Xefi Lyon", "Xefi Roissy"],
+        Franchises: [
+          "Xefi Vernon",
+          "Xefi Sannois",
+          "Xefi Vitrolles",
+          "Xefi Narbonne",
+        ],
+      },
       sectorDetails: {
         id: 1,
         name: "Secteur A",
@@ -198,6 +222,32 @@ export default {
           startDate: "01/01/2024",
           endDate: "01/04/2024",
           actionDelete: "mdi-delete-outline",
+        },
+      ],
+      agencies: [
+        {
+          id: 1,
+          name: "Xefi Chimay",
+        },
+        {
+          id: 2,
+          name: "Xefi Pozuelo",
+        },
+        {
+          id: 1,
+          name: "Xefi Clermont",
+        },
+        {
+          id: 2,
+          name: "Xefi Rodez",
+        },
+        {
+          id: 1,
+          name: "Xefi Laval",
+        },
+        {
+          id: 2,
+          name: "Xefi Gonesse",
         },
       ],
     };

@@ -24,6 +24,7 @@
         :title="dialogTitle"
         :addUser="addUser"
         :addGroup="addGroup"
+        :addSector="addSector"
       />
     </div>
     <v-divider></v-divider>
@@ -186,7 +187,11 @@ export default {
     },
     addGroup: {
       type: Boolean,
+    },
+    addSector: {
+      type: Boolean,
     }
+    
   },
   data() {
     return {
@@ -201,7 +206,7 @@ export default {
   computed: {
     profileItems() {
       const profileTitles = this.tableItems
-        .map((item) => item.profile)
+        .map((item) => item.Roles.Name)
         .filter((profile) => profile);
       return [...new Set(profileTitles)];
     },
@@ -218,7 +223,7 @@ export default {
 
       if (this.selectedProfile) {
         filteredItems = filteredItems.filter(
-          (item) => item.profile === this.selectedProfile
+          (item) => item.Roles.Name === this.selectedProfile
         );
       }
 

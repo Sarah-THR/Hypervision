@@ -27,7 +27,7 @@
   </v-card>
 </template>
   
-  <script>
+<script>
 export default {
   props: {
     iconBackgroundColor: {

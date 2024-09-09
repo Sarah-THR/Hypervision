@@ -265,57 +265,29 @@ definePageMeta({
 </template>
   
 <script lang="ts">
-interface User {
-  id: number;
-  user: string;
-  toValidate: number;
-  billing: number;
-  billingDateToDate: number;
-  informations: string;
-}
-
-interface UserColumn {
-  key: string;
-  label: string;
-}
+import { useUserStore } from "@/stores/users";
 
 export default defineComponent({
   data() {
     return {
       userColumns: [
-        { key: "user", label: "Utilisateur" },
+        { key: "FirstName", label: "Utilisateur" },
         { key: "toValidate", label: "A valider" },
         { key: "billing", label: "A facturer" },
         { key: "billingDateToDate", label: "A facturer date à date" },
         { key: "informations", label: "Informations" },
-      ] as UserColumn[],
-      users: [
-        {
-          id: 1,
-          user: "Anne-Sophie GINDRE",
-          toValidate: 5,
-          billing: 1,
-          billingDateToDate: 0,
-          informations: "Absente du 10/08/2024 au 20/09/2024",
-        },
-        {
-          id: 2,
-          user: "Karen PEINTURIER",
-          toValidate: 3,
-          billing: 3,
-          billingDateToDate: 0,
-          informations: "1 document en retard de validation",
-        },
-        {
-          id: 3,
-          user: "Pryscilla MALLET",
-          toValidate: 10,
-          billing: 24,
-          billingDateToDate: 5,
-          informations: "",
-        },
-      ] as User[],
+      ]
     };
+  },
+  mounted() {
+    const store = useUserStore();
+    store.fetchUsers();
+  },
+  computed: {
+    users() {
+      const store = useUserStore();
+      return store.users;
+    },
   },
 });
 </script>

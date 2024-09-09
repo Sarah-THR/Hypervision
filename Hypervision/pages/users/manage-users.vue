@@ -18,7 +18,7 @@
           :statusSelectVisible="true"
           :searchbarVisible="true"
           :tableHeaders="userTableHeaders"
-          :tableItems="userTableItems" 
+          :tableItems="formattedUsers" 
           btnText="Ajouter"
           btnIcon="mdi-plus"
           :btnVisible="true"
@@ -49,50 +49,41 @@
 </template>
 
 <script lang="ts">
-interface TableHeader {
-  title: string;
-  key: string;
-  align: string;
-  sortable: boolean;
-}
-
-interface UserTableItem {
-  lastname: string;
-  firstname: string;
-  job: string;
-  profile: string;
-  status: string;
-}
-
-interface UserGroupTableItem {
-  name: string;
-  status: string;
-}
-
 export default defineComponent({
   data() {
     return {
       userTableHeaders: [
-        { title: "Nom", key: "lastname", align: "start", sortable: false },
-        { title: "Prénom", key: "firstname", align: "start", sortable: false },
-        { title: "Poste", key: "job", align: "start", sortable: false },
-        { title: "Profil", key: "profile", align: "start", sortable: false },
-        { title: "Statut", key: "status", align: "start", sortable: false },
-      ] as TableHeader[],
-      userTableItems: [
-        { lastname: "Gindre", firstname: "Anne-Sophie", job: "Responsable ADV", profile: "Collaborateur", status: "Actif" },
-        { lastname: "Peinturier", firstname: "Karen", job: "Assistante ADV", profile: "Administrateur", status: "Actif" },
-        { lastname: "Mallet", firstname: "Pryscilla", job: "", profile: "Administrateur", status: "Actif" },
-      ] as UserTableItem[],
+        { title: "Nom", key: "LastName", align: "start", sortable: false },
+        { title: "Prénom", key: "FirstName", align: "start", sortable: false },
+        { title: "Poste", key: "Job", align: "start", sortable: false },
+        { title: "Profil", key: "RolesName", align: "start", sortable: false },
+        { title: "Statut", key: "IsEnable", align: "start", sortable: false },
+      ],
       userGroupTableHeaders: [
         { title: "Nom", key: "name", align: "start", sortable: false },
         { title: "Statut", key: "status", align: "start", sortable: false },
-      ] as TableHeader[],
+      ],
       userGroupTableItems: [
         { name: "Groupe A", status: "Actif" },
         { name: "Groupe B", status: "Actif" },
-      ] as UserGroupTableItem[],
+      ],
     };
+  },
+  mounted() {
+    const store = useUserStore();
+    store.fetchUsers();
+  },
+  computed: {
+    users() {
+      const store = useUserStore();
+      return store.users;
+    },
+    formattedUsers() {
+      return this.users.map(user => ({
+        ...user,
+        RolesName: user.Roles.Name, 
+      }));
+    },
   },
 });
 </script>

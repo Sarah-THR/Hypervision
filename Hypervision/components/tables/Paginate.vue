@@ -10,36 +10,63 @@
       @update:options="loadItems"
       max-height="300"
     >
-      <template v-slot:item="{ item }">
+      <thead>
         <tr>
-          <td v-for="key in Object.keys(item)" :key="key">
-            <template v-if="key === 'status'">
+          <th
+            v-for="header in headers"
+            :key="header.key || header.title"
+            class="text-left"
+          >
+            {{ header.title }}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="item in items" :key="item.id">
+          <td v-for="header in headers" :key="header.key">
+            <template v-if="header.key === 'IsEnable'">
               <v-select
                 class="my-2"
-                v-model="item[key]"
+                v-model="item[header.key]"
                 :items="statusOptions"
                 variant="outlined"
               ></v-select>
             </template>
-            <template v-else-if="key === 'actionUpdate' || key === 'actionValidate' ">
-              <v-btn :icon="item[key]" color="green" variant="text"></v-btn>
+            <template
+              v-else-if="
+                header.key === 'actionUpdate' || header.key === 'actionValidate'
+              "
+            >
+              <v-btn
+                :icon="item[header.key]"
+                color="green"
+                variant="text"
+              ></v-btn>
             </template>
-            <template v-else-if="key === 'actionDelete' || key === 'actionCancel' ">
-              <v-btn :icon="item[key]" color="red" variant="text"></v-btn>
+            <template
+              v-else-if="
+                header.key === 'actionDelete' || header.key === 'actionCancel'
+              "
+            >
+              <v-btn
+                :icon="item[header.key]"
+                color="red"
+                variant="text"
+              ></v-btn>
             </template>
             <template v-else>
               <div @click="navigateToUser(item, type)">
-                {{ item[key] }}
+                {{ item[header.key] }}
               </div>
             </template>
           </td>
         </tr>
-      </template>
+      </tbody>
     </v-data-table-server>
   </v-card>
 </template>
     
-  <script>
+<script>
 export default {
   props: {
     type: {
@@ -88,12 +115,17 @@ export default {
     navigateToUser(item, tableType) {
       if (tableType === "user") {
         const router = useRouter();
-        router.push(`/users/${item.userId}`);
-      }else if(tableType === "sector") {
+        router.push(`/users/${item.Id}`);
+      } else if (tableType === "sector") {
         const router = useRouter();
         router.push(`/sectors/${item.sectorId}`);
       }
     },
+  },
+  computed: {
+    key() {
+      return this.item.actionKey || 'defaultKey';
+    }
   },
 };
 </script>

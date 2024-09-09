@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col cols="12" md="3">
-        <CardsDetails :user="userDetails" />
+        <CardsDetails v-if="profileSelected" :user="profileSelected" />
       </v-col>
       <v-col cols="12" md="9">
         <Tabs :options="tabOptions" v-model="activeTab" />
@@ -17,9 +17,10 @@
           :searchbarVisible="true"
           :tableHeaders="agencyTableHeaders"
           :tableItems="agencyTableItems"
-          :dialogTitle="`Ajouter un/des sites à ${userDetails.name}`"
+          :dialogTitle="`Ajouter un/des sites à `"
           :addDialogVisible="true"
         />
+
         <CardsAdvancedFilter
           v-if="activeTab === 0"
           title="Groupes d'utilisateurs"
@@ -30,7 +31,7 @@
           :searchbarVisible="true"
           :tableHeaders="groupTableHeaders"
           :tableItems="groupTableItems"
-          :dialogTitle="`Ajouter un groupe à ${userDetails.name}`"
+          :dialogTitle="`Ajouter un groupe à `"
           :addDialogVisible="true"
         />
 
@@ -40,7 +41,7 @@
           :tableHeaders="historyTableHeaders"
           :tableItems="historyTableItems"
           :tableVisible="true"
-          addDialogVisible="true"
+          :addDialogVisible="true"
         />
       </v-col>
     </v-row>
@@ -48,21 +49,13 @@
 </template>
 
 <script>
+import { useUserStore } from "@/stores/users";
+
 export default {
   data() {
     return {
       activeTab: 0,
       tabOptions: [{ text: "Accès" }, { text: "Historique" }],
-      userDetails: {
-        id: 1,
-        name: "Anne-Sophie GINDRE",
-        email: "as.gindre@xefi.fr",
-        job: "Resonsable contrat",
-        profile: "Administrateur",
-        status: "Actif",
-        absenceStart: "10/08/2024",
-        absenceEnd: "20/09/2024",
-      },
       agencyTableHeaders: [
         { title: "Nom", key: "name", align: "start", sortable: false },
         { title: "", key: "startDate", align: "start", sortable: false },
@@ -126,8 +119,12 @@ export default {
     };
   },
   computed: {
-    statusColor() {
-      return this.user.status.toLowerCase() === "actif" ? "green" : "red";
+    profileSelected() {
+      const store = useUserStore();
+      const route = useRoute();
+      const userId = Number(route.params.id);
+  
+      return store.users.find(user => user.Id === userId);
     },
   },
   methods: {
@@ -140,8 +137,8 @@ export default {
   },
 };
 </script>
-  
-  <style scoped>
+
+<style scoped>
 .v-divider {
   width: 90%;
   margin-right: auto;
@@ -160,4 +157,3 @@ export default {
   }
 }
 </style>
-  

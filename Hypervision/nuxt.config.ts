@@ -12,6 +12,7 @@ export default defineNuxtConfig({
         config.plugins.push(vuetify({ autoImport: true }))
       })
     },
+    '@pinia/nuxt',
   ],
   compatibilityDate: '2024-04-03',
   devtools: { enabled: true },

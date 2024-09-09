@@ -49,6 +49,34 @@
             </v-col>
           </v-row>
         </v-container>
+        <v-container v-if="addSector">
+          <v-row>
+            <v-col cols="12">
+              <v-text-field
+                label="Nom du secteur"
+                variant="outlined"
+              ></v-text-field>
+            </v-col>
+            <v-col cols="6">
+              <v-autocomplete
+                placeholder="Sélectionner une ou plusieurs agences"
+                variant="outlined"
+                v-model="selectedItems"
+                clearable
+                multiple
+              />
+            </v-col>
+            <v-col cols="6">
+              <v-autocomplete
+                placeholder="Sélectionner une ou plusieurs franchises"
+                variant="outlined"
+                v-model="selectedItems"
+                clearable
+                multiple
+              />
+            </v-col>
+          </v-row>
+        </v-container>
       </v-card-text>
       <template v-slot:actions>
         <v-btn text="Annuler" @click="dialog = false"></v-btn>
@@ -72,6 +100,9 @@ export default {
       type: Boolean,
     },
     addGroup: {
+      type: Boolean,
+    },
+    addSector: {
       type: Boolean,
     },
   },

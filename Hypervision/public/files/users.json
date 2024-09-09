@@ -1,0 +1,62 @@
+[
+    {
+        "Id": 1,
+        "FirstName": "John",
+        "LastName": "Doe",
+        "Email": "john.doe@example.com",
+        "Job": "Software Engineer",
+        "IsEnable": true,
+        "Roles": {
+            "Id": 1,
+            "Name": "Administrateur"
+        }
+    },
+    {
+        "Id": 2,
+        "FirstName": "Jane",
+        "LastName": "Smith",
+        "Email": "jane.smith@example.com",
+        "Job": "Project Manager",
+        "IsEnable": true,
+        "Roles": {
+            "Id": 1,
+            "Name": "Administrateur"
+        }
+    },
+    {
+        "Id": 3,
+        "FirstName": "Alice",
+        "LastName": "Johnson",
+        "Email": "alice.johnson@example.com",
+        "Job": "Data Analyst",
+        "IsEnable": false,
+        "Roles": {
+            "Id": 2,
+            "Name": "Utilisateur"
+        }
+    },
+    {
+        "Id": 4,
+        "FirstName": "Robert",
+        "LastName": "Brown",
+        "Email": "robert.brown@example.com",
+        "Job": "Product Owner",
+        "IsEnable": true,
+        "Roles": {
+            "Id": 2,
+            "Name": "Utilisateur"
+        }
+    },
+    {
+        "Id": 5,
+        "FirstName": "Emily",
+        "LastName": "Davis",
+        "Email": "emily.davis@example.com",
+        "Job": "UX Designer",
+        "IsEnable": false,
+        "Roles": {
+            "Id": 2,
+            "Name": "Utilisateur"
+        }
+    }
+]

@@ -14,6 +14,9 @@
           tableType="sector"
           :tableHeaders="sectorTableHeaders"
           :tableItems="sectorTableItems"
+          :dialogTitle="`Créer un secteur`"
+          :createDialogVisible="true"
+          :addSector="true"
         />
       </v-col>
       <v-col cols="12" md="12">
