@@ -6,10 +6,9 @@ export const useUserStore = defineStore("user", {
     state: () => ({
         users: [] as User[],
         user: null as User | null,
-        selectedUser: null as User | null,
     }),
     getters: {
-      
+
     },
     actions: {
         async fetchUsers() {
@@ -26,13 +25,9 @@ export const useUserStore = defineStore("user", {
         async fetchUserById(userId: number) {
             try {
                 if (this.users.length === 0) {
-                    await this.fetchUsers(); 
+                    await this.fetchUsers();
                 }
-                if(this.user == null){
-                    this.user = this.users.find(x => x.Id === userId) || null;
-                }else{
-                    this.selectedUser = this.users.find(x => x.Id === userId) || null;
-                }
+                this.user = this.users.find(x => x.Id === userId) || null;
             }
             catch (error) {
                 alert(error)

@@ -6,7 +6,7 @@
         "Email": "john.doe@example.com",
         "Job": "Software Engineer",
         "IsEnable": true,
-        "Roles": {
+        "Role": {
             "Id": 1,
             "Name": "Administrateur"
         }
@@ -18,7 +18,7 @@
         "Email": "jane.smith@example.com",
         "Job": "Project Manager",
         "IsEnable": true,
-        "Roles": {
+        "Role": {
             "Id": 1,
             "Name": "Administrateur"
         }
@@ -30,7 +30,7 @@
         "Email": "alice.johnson@example.com",
         "Job": "Data Analyst",
         "IsEnable": false,
-        "Roles": {
+        "Role": {
             "Id": 2,
             "Name": "Utilisateur"
         }
@@ -42,7 +42,7 @@
         "Email": "robert.brown@example.com",
         "Job": "Product Owner",
         "IsEnable": true,
-        "Roles": {
+        "Role": {
             "Id": 2,
             "Name": "Utilisateur"
         }
@@ -54,7 +54,7 @@
         "Email": "emily.davis@example.com",
         "Job": "UX Designer",
         "IsEnable": false,
-        "Roles": {
+        "Role": {
             "Id": 2,
             "Name": "Utilisateur"
         }

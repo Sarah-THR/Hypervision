@@ -206,7 +206,7 @@ export default {
   computed: {
     profileItems() {
       const profileTitles = this.tableItems
-        .map((item) => item.Roles.Name)
+        .map((item) => item.Role.Name)
         .filter((profile) => profile);
       return [...new Set(profileTitles)];
     },
@@ -223,7 +223,7 @@ export default {
 
       if (this.selectedProfile) {
         filteredItems = filteredItems.filter(
-          (item) => item.Roles.Name === this.selectedProfile
+          (item) => item.Role.Name === this.selectedProfile
         );
       }
 

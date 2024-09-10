@@ -1,0 +1,27 @@
+[
+    {
+        "Id": 1,
+        "Name": "Groupe A",
+        "IsEnable": true,
+        "Users": [
+            { "UserId": 2, "GroupId": 1, "StartDate": "2022-01-01", "EndDate": "2023-01-01"}
+          ]
+    },
+    {
+        "Id": 2,
+        "Name": "Groupe B",
+        "IsEnable": true,
+        "Users": [
+            { "UserId": 1, "GroupId": 2, "StartDate": "2022-01-01", "EndDate": "2023-01-01"},
+            { "UserId": 2, "GroupId": 2, "StartDate": "2022-06-01", "EndDate": "2022-12-01"}
+          ]
+    },
+    {
+        "Id": 3,
+        "Name": "Groupe C",
+        "IsEnable": false,
+        "Users": [
+            { "UserId": 3, "GroupId": 3, "StartDate": "2022-01-01", "EndDate": "2023-01-01"}
+          ]
+    }
+]

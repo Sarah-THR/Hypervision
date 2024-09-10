@@ -35,7 +35,7 @@
           :statusSelectVisible="true"
           :searchbarVisible="true"
           :tableHeaders="userGroupTableHeaders"
-          :tableItems="userGroupTableItems" 
+          :tableItems="groups" 
           btnText="Ajouter"
           btnIcon="mdi-plus"
           :btnVisible="true"
@@ -56,32 +56,34 @@ export default defineComponent({
         { title: "Nom", key: "LastName", align: "start", sortable: false },
         { title: "Prénom", key: "FirstName", align: "start", sortable: false },
         { title: "Poste", key: "Job", align: "start", sortable: false },
-        { title: "Profil", key: "RolesName", align: "start", sortable: false },
+        { title: "Profil", key: "RoleName", align: "start", sortable: false },
         { title: "Statut", key: "IsEnable", align: "start", sortable: false },
       ],
       userGroupTableHeaders: [
-        { title: "Nom", key: "name", align: "start", sortable: false },
-        { title: "Statut", key: "status", align: "start", sortable: false },
-      ],
-      userGroupTableItems: [
-        { name: "Groupe A", status: "Actif" },
-        { name: "Groupe B", status: "Actif" },
-      ],
+        { title: "Nom", key: "Name", align: "start", sortable: false },
+        { title: "Statut", key: "IsEnable", align: "start", sortable: false },
+      ]
     };
   },
   mounted() {
     const store = useUserStore();
+    const groupStore = useGroupStore();
     store.fetchUsers();
+    groupStore.fetchGroups();
   },
   computed: {
     users() {
       const store = useUserStore();
       return store.users;
     },
+    groups() {
+      const groupStore = useGroupStore();
+      return groupStore.groups;
+    },
     formattedUsers() {
       return this.users.map(user => ({
         ...user,
-        RolesName: user.Roles.Name, 
+        RoleName: user.Role.Name, 
       }));
     },
   },

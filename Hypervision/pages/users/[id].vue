@@ -30,7 +30,7 @@
           :btnVisible="true"
           :searchbarVisible="true"
           :tableHeaders="groupTableHeaders"
-          :tableItems="groupTableItems"
+          :tableItems="groups"
           :dialogTitle="`Ajouter un groupe à `"
           :addDialogVisible="true"
         />
@@ -80,27 +80,11 @@ export default {
         },
       ],
       groupTableHeaders: [
-        { title: "Nom", key: "name", align: "start", sortable: false },
-        { title: "", key: "startDate", align: "start", sortable: false },
-        { title: "", key: "endDate", align: "start", sortable: false },
+        { title: "Nom", key: "Name", align: "start", sortable: false },
+        { title: "", key: "StartDate", align: "start", sortable: false },
+        { title: "", key: "EndDate", align: "start", sortable: false },
         { title: "", key: "actionDelete", align: "start", sortable: false },
         { title: "", key: "actionUpdate", align: "start", sortable: false },
-      ],
-      groupTableItems: [
-        {
-          name: "Groupe A",
-          startDate: "01/01/2024",
-          endDate: "01/04/2024",
-          actionUpdate: "mdi-pencil-outline",
-          actionDelete: "mdi-delete-outline",
-        },
-        {
-          name: "Groupe B",
-          startDate: "",
-          endDate: "",
-          actionUpdate: "mdi-pencil-outline",
-          actionDelete: "mdi-delete-outline",
-        },
       ],
       historyTableHeaders: [
         { title: "Nom", key: "name", align: "start", sortable: false },
@@ -123,8 +107,14 @@ export default {
       const store = useUserStore();
       const route = useRoute();
       const userId = Number(route.params.id);
-  
-      return store.users.find(user => user.Id === userId);
+
+      return store.users.find((user) => user.Id === userId);
+    },
+    groups() {
+      const groupStore = useGroupStore();
+      const route = useRoute();
+      const userId = Number(route.params.id);
+      return groupStore.groups.filter((group) => group.Users.some((userGroup) => userGroup.UserId === userId));
     },
   },
   methods: {
